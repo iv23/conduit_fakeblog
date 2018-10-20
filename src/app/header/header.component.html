@@ -1,0 +1,12 @@
+<nav class="navbar navbar-dark bg-dark mb-5">
+  <a class="navbar-brand" href="/">Fake Blog</a>
+  <div class="navbar-expand ml-auto navbar-nav">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="#">Home</a>
+      <a class="nav-item nav-link" *ngIf="!_jwt.getToken()" routerLink="/login">Sign In</a>
+      <a class="nav-item nav-link" *ngIf="!_jwt.getToken()" routerLink="/register">Sign Up</a>
+      <a class="nav-item nav-link" *ngIf="_jwt.getToken()" routerLink="/register">Setting</a>
+      <a class="nav-item nav-link" *ngIf="_jwt.getToken()" routerLink="/register">Log Out</a>
+    </div>
+  </div>
+</nav>
