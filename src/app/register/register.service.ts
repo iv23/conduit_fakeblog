@@ -12,7 +12,7 @@ export class RegisterService {
     this.route = '/users';
   }
 
-  signUpUser(user): Observable<User> {
+  signUpUser(user): Observable<any> {
     return this.apiService.post(this.route, user);
   }
 }

@@ -22,6 +22,14 @@ import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 import {provideForRootGuard} from '@angular/router/src/router_module';
 import { FeedComponent } from './feed/feed.component';
+import {UserService} from './core/services/user.service';
+import { TagsComponent } from './feed/tags/tags.component';
+import { ArticleListComponent } from './feed/article-list/article-list.component';
+import { ArticlePreviewComponent } from './feed/article-list/article-preview/article-preview.component';
+import { ArticleDetailComponent } from './article-detail/article-detail.component';
+import {FeedService} from './feed/feed.service';
+import {CoreModule} from './core/core.module';
+import {SharedModule} from './shared/shared.module';
 
 
 @NgModule({
@@ -35,10 +43,16 @@ import { FeedComponent } from './feed/feed.component';
     LoginComponent,
     ProfileComponent,
     SettingsComponent,
-    FeedComponent
+    FeedComponent,
+    TagsComponent,
+    ArticleListComponent,
+    ArticlePreviewComponent,
+    ArticleDetailComponent
   ],
   imports: [
     BrowserModule,
+    CoreModule,
+    SharedModule,
     CommonModule,
     HttpClientModule,
     MatTabsModule,
@@ -47,11 +61,8 @@ import { FeedComponent } from './feed/feed.component';
     BrowserAnimationsModule,
     AppRoutingModule
   ],
-  providers: [RegisterService, AuthGuard , ApiService, JwtService, TokenInterceptorService,{
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptorService,
-    multi: true
-  }],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true },
+    RegisterService, AuthGuard , ApiService, JwtService, UserService, TokenInterceptorService, FeedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

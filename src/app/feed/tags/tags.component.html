@@ -1,0 +1,10 @@
+<div class="card">
+  <div class="card-header">
+    Popular Tags
+  </div>
+  <div class="card-body">
+    <div class="tags">
+      <button (click)="tagValueChanged(tag)" *ngFor="let tag of tags">{{ tag }}</button>
+    </div>
+  </div>
+</div>
