@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-6 mx-auto">
+    <div class="card rounded-0">
+      <div class="card-body">
+        <form [formGroup]= "articleForm" (ngSubmit)="publishArticleTapped()">
+          <div class="form-group">
+            <input type="text" class="form-control rounded-0" formControlName="title" placeholder="Article title">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control rounded-0" formControlName="description" placeholder="What's this about?">
+          </div>
+          <div class="form-group">
+            <textarea formControlName="body" class="form-control rounded-0" placeholder="Write your article (in markdown)"></textarea>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control rounded-0" formControlName="tagList" placeholder="What's this about?">
+          </div>
+          <button type="submit" class="btn btn-primary float-right">Publish Article</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
