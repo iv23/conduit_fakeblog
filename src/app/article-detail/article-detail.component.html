@@ -1,3 +1,75 @@
-<p>
-  article-detail works!
-</p>
+<div class="container bg-dark">
+<div class="row">
+  <div class="col offset-2">
+    <p class="h1 text-white">{{ article.title }}</p>
+  </div>
+  <div class="col-12 offset-2">
+    <img [src]="article.author.image" style="height: 32px; width: 32px" class="rounded-circle">
+    <span class="text-white">{{ article.author.username }}</span>
+    <span class="text-muted"> {{ article.createdAt | date }}</span>
+    <div class="mt-1" *ngIf="article.author.username !== currentUser.username">
+      <app-favourite-button (toggle)="favouriteToggled($event)" [article]="article">
+        {{ article.favorited ? 'Unfavorite' : 'Favorite' }} Article <span class="counter">({{ article.favoritesCount }})</span>
+      </app-favourite-button>
+    </div>
+    <div class="mt-1" *ngIf="article.author.username === currentUser.username">
+      <button class="btn btn-outline-info" (click)="editClicked()"><i class="fa fa-edit mr-1"></i>Edit Article</button>
+    </div>
+  </div>
+  <div class="col mt-1 offset-2" *ngIf="article.author.username !== currentUser.username">
+    <app-follow-button></app-follow-button>
+  </div>
+  <div class="col mt-1 offset-2" *ngIf="article.author.username === currentUser.username">
+    <button class="btn btn-outline-info" (click)="deleteClicked()"><i class="fa fa-trash mr-1"></i>Delete Article</button>
+  </div>
+</div>
+  <br>
+  <div class="row border-white border-bottom">
+    <div class="col offset-2">
+      <p class="text-white">{{ article.body }}</p>
+    </div>
+  </div>
+  <br>
+  <div class="row" *ngIf="isUserLoggedIn">
+    <div class="col-8 offset-2">
+      <div class="card">
+        <textarea [value]="defaultText" class="rounded d-inline-flex h-100 w-100 border-0" #commentField rows="7" placeholder="Write a comment...."></textarea>
+        <div class="card-footer">
+          <img [src]="currentUser.image" style="width: 32px; height: 32px" class="float-left">
+          <button class="btn btn-outline-success btn-success float-right" (click)="postComment(commentField.value)">Post Comment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="text-center" *ngIf='!isUserLoggedIn'>
+    Please <a routerLink="/login">Sign In</a> or <a routerLink="/register">sign Up</a> to add comments to this article.
+  </div>
+
+  <br>
+  <div *ngFor="let comment of allComments">
+    <div class="row">
+      <div class="col-8 offset-2">
+        <div class="card">
+          <div class="card-body">
+            {{ comment.body }}
+          </div>
+          <div class="card-footer">
+            <div class="row">
+              <div class="col-11">
+                <div class="d-flex justify-content-start pl-3">
+                  <img [src]="comment.author.image" class="rounded-circle" style="width: 25px; height: 25px">
+                  <span class="mx-2 text-secondary">{{ comment.author.username }}</span>
+                  <span class="text-secondary">{{ comment.createdAt | date }}</span>
+                </div>
+              </div>
+              <div class="float-right" (click)="deleteComment(comment.id)">
+                <i aria-hidden="true" class="fa fa-trash" *ngIf="comment.author.username === currentUser.username"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>

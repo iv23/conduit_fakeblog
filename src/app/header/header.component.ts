@@ -11,7 +11,7 @@ import {UserService} from '../core/services/user.service';
 })
 export class HeaderComponent implements OnInit {
   currUser: User;
-  constructor(public _jwt: JwtService, private _user: UserService) {
+  constructor(public _jwt: JwtService, private _user: UserService, private router: Router) {
   }
 
   ngOnInit() {
@@ -19,5 +19,4 @@ export class HeaderComponent implements OnInit {
       this.currUser = userData;
     });
   }
-
 }

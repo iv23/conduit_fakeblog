@@ -12,6 +12,9 @@ export class UserService {
   public userData: Observable<User> = this.userDataSubject.asObservable().pipe(distinctUntilChanged());
   constructor(private _jwt: JwtService, private _api: ApiService) {
   }
+  updateCurrentUser(user) {
+    return this._api.put('/user', {user: user});
+  }
   setCurrentUser() {
     if (this._jwt.getToken()) {
       this._api.get('/user')

@@ -1,3 +1,32 @@
-<p>
-  settings works!
-</p>
+<div class="row">
+  <div class="col-md-6 mx-auto">
+    <div class="card rounded-0">
+      <div class="card-header">
+        <p class="h1 text-center mb-0">Your Settings</p>
+      </div>
+      <div class="card-body">
+        <form [formGroup]= "settingsForm" (ngSubmit)="updateSettingsTapped()">
+          <div class="form-group">
+            <input type="text" class="form-control rounded-0" formControlName="image" placeholder="URL of profile picture">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control rounded-0" formControlName="username" placeholder="Username">
+          </div>
+          <div class="form-group">
+            <textarea formControlName="bio" class="form-control rounded-0" placeholder="Short bio about you"></textarea>
+          </div>
+          <div class="form-group">
+            <input type="email" class="form-control rounded-0" formControlName="email" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control rounded-0" formControlName="password" placeholder="New Password">
+          </div>
+          <button type="submit" class="btn btn-primary btn-outline-primary float-right">Update Settings</button>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-danger btn-outline-danger float-left" (click)="logoutClicked()">Or click here to logout</button>
+      </div>
+    </div>
+  </div>
+</div>

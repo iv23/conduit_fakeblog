@@ -1,17 +1,19 @@
 <div class="card">
   <div class="card-header h-25">
-    <div class="d-flex justify-content-start" (click)="toArticlePage()">
-      <img class="rounded-circle mx-1" style="height: 5%; width: 5%" [src]="article.author.image">
+    <div class="">
+      <img [routerLink]="['/profile', article.author.username]" class="rounded-circle mx-1" style="height: 32px; width: 32px" [src]="article.author.image">
       <div class="d-flex flex-column">
-        {{ article.author.username }}<br>
-        {{ article.createdAt }}
+        <a [routerLink]="['/profile', article.author.username]">
+          {{ article.author.username }}
+        </a>
+        <span class="text-muted">{{ article.createdAt | date}}</span>
+      </div>
+      <div class="float-right">
+        <app-favourite-button  [article]="article">{{ article.favoritesCount }}</app-favourite-button>
       </div>
     </div>
-    <div class="d-flex justify-content-end">
-      <app-favourite-button [article]="article">{{ article.favoritesCount }}</app-favourite-button>
-    </div>
   </div>
-  <div class="card-body">
+  <div class="card-body" (click)="toArticlePage(article.slug)">
     <h1>{{ article.title }}</h1>
     <p>{{ article.description }}</p>
     <span class="text-secondary">Read more</span>

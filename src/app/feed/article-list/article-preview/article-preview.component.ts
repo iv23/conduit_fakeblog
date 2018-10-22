@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Article} from '../../../core/models';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-article-preview',
@@ -8,10 +9,10 @@ import {Article} from '../../../core/models';
 })
 export class ArticlePreviewComponent implements OnInit {
   @Input() article: Article;
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
-  toArticlePage() {
-    console.log(this.article.slug);
+  toArticlePage(slug) {
+    this.router.navigate(['article', slug]);
   }
 
   ngOnInit() {

@@ -30,6 +30,7 @@ import { ArticleDetailComponent } from './article-detail/article-detail.componen
 import {FeedService} from './feed/feed.service';
 import {CoreModule} from './core/core.module';
 import {SharedModule} from './shared/shared.module';
+import { EditorComponent } from './editor/editor.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import {SharedModule} from './shared/shared.module';
     TagsComponent,
     ArticleListComponent,
     ArticlePreviewComponent,
-    ArticleDetailComponent
+    ArticleDetailComponent,
+    EditorComponent
   ],
   imports: [
     BrowserModule,

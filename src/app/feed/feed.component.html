@@ -1,12 +1,13 @@
-<div *ngIf="true">
+<div *ngIf="parent === 'home'">
   <div class="container">
     <div class="row">
       <div class="col-md-8">
-        <mat-tab-group (selectedTabChange)="onTabChange($event)" (animationDone)="abc($event)">
+        <mat-tab-group (selectedTabChange)="onTabChange($event)" [selectedIndex]="" (animationDone)="homeAnimateEvent($event)">
           <mat-tab *ngIf="isLoggedIn" label="Your Feed">
             <app-article-list [articles]="userFeedArticles"></app-article-list>
           </mat-tab>
           <mat-tab label="Global Feed">
+            <span *ngIf="feedArticles === {}">Loading Articles</span>
             <ng-template matTabContent>
               <app-article-list [articles]="feedArticles"></app-article-list>
             </ng-template>
@@ -21,32 +22,22 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-8">
-      <button *ngFor="let page of globalFeedPages" (click)="globalFeedPageNumberClicked(page)">{{page}}</button>
-    </div>
-  </div>
 </div>
+
+
 <div *ngIf="parent === 'profile'">
   <div class="container">
     <div class="row">
-      <div class="col-md-8">
-        <mat-tab-group (selectedTabChange)="onTabChange($event)" (animationDone)="abc($event)">
-          <mat-tab *ngIf="isLoggedIn" label="Your Feed">
-            <!--<app-article-list [article]="feedArticle" [currUser]="currUser"></app-article-list>-->
+      <div class="col-md-12">
+        <mat-tab-group (selectedTabChange)="onTabChange($event)" (animationDone)="profileAnimateEvent($event)">
+          <mat-tab label="My Articles">
+            <app-article-list [articles]="myArticles"></app-article-list>
           </mat-tab>
-          <mat-tab label="Global Feed">
-            <app-article-list [articles]="feedArticles"></app-article-list>
-          </mat-tab>
-          <mat-tab label="FUcl feed">
+          <mat-tab label="Favourited Articles">
+            <app-article-list [articles]="favoriteArticles"></app-article-list>
           </mat-tab>
         </mat-tab-group>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-8">
-      <button *ngFor="let page of globalFeedPages" (click)="globalFeedPageNumberClicked(page)">{{page}}</button>
     </div>
   </div>
 </div>

@@ -5,9 +5,9 @@
       <a class="nav-item nav-link active" href="#">Home</a>
       <a class="nav-item nav-link" *ngIf="!_jwt.getToken()" routerLink="/login">Sign In</a>
       <a class="nav-item nav-link" *ngIf="!_jwt.getToken()" routerLink="/register">Sign Up</a>
-      <a class="nav-item nav-link" *ngIf="_jwt.getToken()" routerLink="/register">New Article</a>
-      <a class="nav-item nav-link" *ngIf="_jwt.getToken()" routerLink="/register">Setting</a>
-      <a class="nav-item nav-link" *ngIf="_jwt.getToken()" routerLink="/register">{{ currUser.username }}</a>
+      <a class="nav-item nav-link" *ngIf="_jwt.getToken()" routerLink="/editor">New Article</a>
+      <a class="nav-item nav-link" *ngIf="_jwt.getToken()" routerLink="/settings">Setting</a>
+      <a class="nav-item nav-link" *ngIf="_jwt.getToken()" [routerLink]="['/profile', currUser.username]">{{ currUser.username }}</a>
     </div>
   </div>
 </nav>
